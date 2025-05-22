@@ -1,6 +1,9 @@
 const mongoose = require('mongoose')
 
 exports.currentStatus = async function (req, res) {
+  if (mongoose.connection.readyState === 2) {
+    await mongoose.connection.asPromise()
+  }
   if (mongoose.connection.readyState === 1) {
     return res.status(200).send({
       status: 'OK',
@@ -8,9 +11,8 @@ exports.currentStatus = async function (req, res) {
     })
   }
 
-  res.status(503).send({
+  return res.status(503).send({
     status: 'ERROR',
-    database: 'Error',
-    message: error.message
+    message: 'Error connecting to database'
   })
 }

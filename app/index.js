@@ -17,7 +17,7 @@ class App {
     return this._database
   }
 
-  async start() {
+  start() {
     // Register middleware
     this.server.registerMiddleware()
 
@@ -30,7 +30,7 @@ class App {
     this.server.registerErrorHandler()
 
     // Connect to db
-    await this.database.connect()
+    this.database.connect()
 
     return this
   }
