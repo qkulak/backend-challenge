@@ -42,11 +42,10 @@ describe('api', () => {
           .promise()
 
         should.exist(response)
-        response.should.have.property('success', true)
-        response.should.have.property('data').which.is.an.Array()
-        response.data.should.have.length(2)
+        response.should.be.an.Array()
+        response.should.have.length(2)
 
-        response.data.forEach((note) => {
+        response.forEach((note) => {
           note.should.have.property('title')
           note.should.have.property('message')
           note.should.have.property('userId', user1Auth.user)

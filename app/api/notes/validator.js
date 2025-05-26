@@ -3,7 +3,7 @@ const { body } = validate
 
 class NoteValidator extends Validator {
   async post(req) {
-    const validations = [body('title').optional().isLength(1, 64), body('message').optional().isLength(1, 200)]
+    const validations = [body('title').isLength(1, 64), body('message').isLength(1, 200)]
     await this.validate(req, validations, { sanitize: 'query' })
   }
 }

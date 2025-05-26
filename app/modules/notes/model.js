@@ -16,6 +16,7 @@ class NoteModel extends Model {
       userId: {
         type: String,
         required: true,
+        ref: 'User',
         index: true
       }
     }

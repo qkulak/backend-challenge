@@ -23,7 +23,7 @@ describe('api', () => {
           message: 'This is a test note'
         }
 
-        const response = await agent
+        const note = await agent
           .client()
           .post(`/note`)
           .set('authorization', userAuth.token)
@@ -31,11 +31,8 @@ describe('api', () => {
           .expect(201)
           .promise()
 
-        should.exist(response)
-        response.should.have.property('success', true)
-        response.should.have.property('data')
+        should.exist(note)
 
-        const note = response.data
         note.should.have.property('id')
         note.should.have.property('title', noteData.title)
         note.should.have.property('message', noteData.message)
